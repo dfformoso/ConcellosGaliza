@@ -10,7 +10,7 @@ export default function MapPage() {
 
   return (
     <div style={{ position: 'relative' }}>
-      <Title />
+      <Title title="Os concellos que visitei" />
       <VisitedList visited={visited} onRemove={removeMunicipality} />
       <Map>
         {municipalities.length > 0 && (
@@ -18,6 +18,7 @@ export default function MapPage() {
             municipalities={municipalities}
             visited={visited}
             onMunicipalityClick={toggleMunicipality}
+            showTooltips={true}
           />
         )}
       </Map>

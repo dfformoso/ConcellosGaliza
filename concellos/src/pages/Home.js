@@ -30,7 +30,7 @@ export default function Home() {
           title="Onde está o Concello?"
           description="Identifica onde está o concello que buscamos"
           path="/onde"
-          disabled={true}
+          disabled={false}
         />
         <GameBox
           title="De concello a Concello"

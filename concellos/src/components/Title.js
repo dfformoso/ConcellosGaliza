@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function Title() {
+export default function Title({ title }) {
   const navigate = useNavigate();
 
   return (
@@ -41,7 +41,7 @@ export default function Title() {
         boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
         margin: 0
       }}>
-        Os concellos que visitei
+        {title}
       </h1>
     </div>
   );

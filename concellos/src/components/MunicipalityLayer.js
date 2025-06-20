@@ -5,12 +5,25 @@ import '../styles/MunicipalityLayer.css';
 export default function MunicipalityLayer({ 
   municipalities, 
   visited, 
-  onMunicipalityClick 
+  onMunicipalityClick,
+  showTooltips = true,
+  incorrectGuesses = []
 }) {
   const layerRef = useRef();
 
   const styleMunicipality = useCallback((feature) => {
     const name = feature.properties.NomeConcel || feature.properties.NOMBRE;
+
+    if (incorrectGuesses.includes(name)) {
+      return {
+        fillColor: '#d9534f',
+        color: 'black',
+        weight: 1,
+        fillOpacity: 0.7,
+        interactive: false
+      };
+    }
+
     return {
       fillColor: visited.includes(name) ? 'blue' : 'white',
       color: 'black',
@@ -18,17 +31,19 @@ export default function MunicipalityLayer({
       fillOpacity: 0.6,
       interactive: true
     };
-  }, [visited]);
+  }, [visited, incorrectGuesses]);
 
   const onEachFeature = useCallback((feature, layer) => {
     const name = feature.properties.NomeConcel || feature.properties.NOMBRE;
     
-    // Añadir tooltip
-    layer.bindTooltip(name, {
-      permanent: false,
-      direction: 'top',
-      className: 'municipality-tooltip'
-    });
+    if (showTooltips) {
+      // Añadir tooltip
+      layer.bindTooltip(name, {
+        permanent: false,
+        direction: 'top',
+        className: 'municipality-tooltip'
+      });
+    }
 
     layer.on({
       click: (e) => {
@@ -41,7 +56,7 @@ export default function MunicipalityLayer({
         e.originalEvent.stopPropagation();
       }
     });
-  }, [onMunicipalityClick]);
+  }, [onMunicipalityClick, showTooltips]);
 
   return (
     <GeoJSON
