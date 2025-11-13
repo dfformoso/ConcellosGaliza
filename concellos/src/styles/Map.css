@@ -1,0 +1,12 @@
+.leaflet-container {
+  height: 100vh;
+  width: 100%;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .leaflet-container {
+    height: 100vh;
+  }
+}
+

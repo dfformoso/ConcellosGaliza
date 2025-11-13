@@ -1,0 +1,43 @@
+.game-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  opacity: 1;
+  text-align: center;
+  min-width: 250px;
+  max-width: 300px;
+  margin: 10px;
+}
+
+.game-box:hover {
+  transform: translateY(-5px);
+}
+
+.game-box.disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.game-box.disabled:hover {
+  transform: translateY(0);
+}
+
+.game-box-title {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.game-box-description {
+  margin: 0;
+  color: #666;
+}
+
+.game-box-disabled-text {
+  margin: 10px 0 0 0;
+  color: #999;
+  font-size: 0.9em;
+}
+

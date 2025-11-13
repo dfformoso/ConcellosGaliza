@@ -1,0 +1,50 @@
+.onde-esta-page-container {
+  position: relative;
+}
+
+.status-message-button {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007bff;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: 2px solid #0056b3;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1100;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  max-width: 90%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  user-select: none;
+}
+
+.status-message-button:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.status-message-button:active {
+  transform: translateX(-50%) scale(1.02);
+}
+
+.status-message-button-success {
+  background-color: #28a745;
+  border-color: #1e7e34;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.status-message-button-success:hover {
+  background-color: #218838;
+  border-color: #1c7430;
+  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+

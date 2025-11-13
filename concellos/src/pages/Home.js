@@ -1,31 +1,14 @@
 import React from 'react';
 import GameBox from '../components/GameBox';
+import '../styles/Home.css';
 
 export default function Home() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#f5f5f5',
-      padding: '20px'
-    }}>
-      <h1 style={{
-        marginBottom: '40px',
-        color: '#333',
-        textAlign: 'center'
-      }}>
+    <div className="home-container">
+      <h1 className="home-title">
         Xeo Galiza
       </h1>
-      <div style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: '20px',
-        maxWidth: '1000px'
-      }}>
+      <div className="home-games-container">
         <GameBox
           title="Onde está o Concello?"
           description="Identifica onde está o concello que buscamos"

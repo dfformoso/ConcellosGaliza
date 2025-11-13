@@ -7,12 +7,23 @@ export default function MunicipalityLayer({
   visited, 
   onMunicipalityClick,
   showTooltips = true,
-  incorrectGuesses = []
+  incorrectGuesses = [],
+  revealedMunicipality = null
 }) {
   const layerRef = useRef();
 
   const styleMunicipality = useCallback((feature) => {
     const name = feature.properties.NomeConcel || feature.properties.NOMBRE;
+
+    if (revealedMunicipality && name === revealedMunicipality) {
+      return {
+        fillColor: '#007bff',
+        color: '#004a99',
+        weight: 2,
+        fillOpacity: 0.7,
+        interactive: false
+      };
+    }
 
     if (incorrectGuesses.includes(name)) {
       return {
@@ -31,7 +42,7 @@ export default function MunicipalityLayer({
       fillOpacity: 0.6,
       interactive: true
     };
-  }, [visited, incorrectGuesses]);
+  }, [visited, incorrectGuesses, revealedMunicipality]);
 
   const onEachFeature = useCallback((feature, layer) => {
     const name = feature.properties.NomeConcel || feature.properties.NOMBRE;

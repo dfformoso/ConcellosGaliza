@@ -5,17 +5,26 @@ import { useMunicipalities } from '../hooks/useMunicipalities';
 import MunicipalityLayer from '../components/MunicipalityLayer';
 import GameObjective from '../components/GameObjective';
 import IncorrectGuessesList from '../components/IncorrectGuessesList';
+import '../styles/OndeEstaPage.css';
 
 export default function OndeEstaPage() {
   const { municipalities } = useMunicipalities();
   const [targetMunicipality, setTargetMunicipality] = useState(null);
   const [incorrectGuesses, setIncorrectGuesses] = useState([]);
+  const [isTargetRevealed, setIsTargetRevealed] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const MAX_ATTEMPTS = 5;
   
   // The ref will hold the most up-to-date target, avoiding stale closures.
   const targetMunicipalityRef = useRef(null);
 
   const selectNewTarget = useCallback(() => {
     if (municipalities.length === 0) return;
+
+    setIncorrectGuesses([]);
+    setIsTargetRevealed(false);
+    setStatusMessage('');
 
     let validChoices = municipalities;
     // Use the ref to get the *actual* current target for comparison.
@@ -40,22 +49,51 @@ export default function OndeEstaPage() {
     }
   }, [municipalities, selectNewTarget]);
 
+  useEffect(() => {
+    if (incorrectGuesses.length >= MAX_ATTEMPTS && !isTargetRevealed) {
+      setIsTargetRevealed(true);
+      setStatusMessage('Non atopaches o concello, continúa xogando!');
+    }
+  }, [incorrectGuesses, isTargetRevealed]);
+
   const handleMunicipalityClick = useCallback((name) => {
     // Compare against the ref, which is always up-to-date.
 
-    if (name === targetMunicipalityRef.current) {
-      alert('Correcto! 🎉');
-      setIncorrectGuesses([]);
-      selectNewTarget();
-    } else if (!incorrectGuesses.includes(name)) {
-      setIncorrectGuesses(prev => [...prev, name]);
+    if (!targetMunicipalityRef.current) {
+      return;
     }
-  }, [selectNewTarget, incorrectGuesses]);
+
+    if (isTargetRevealed) {
+      selectNewTarget();
+      return;
+    }
+
+    if (name === targetMunicipalityRef.current) {
+      setStatusMessage('Correcto! 🎉');
+      setIsTargetRevealed(true);
+    } else {
+      setIncorrectGuesses(prev => {
+        if (prev.includes(name) || prev.length >= MAX_ATTEMPTS) {
+          return prev;
+        }
+
+        return [...prev, name];
+      });
+    }
+  }, [selectNewTarget, isTargetRevealed]);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="onde-esta-page-container">
       <Title title="Onde está o Concello?" />
       <IncorrectGuessesList guesses={incorrectGuesses} />
+      {statusMessage && (
+        <button
+          onClick={selectNewTarget}
+          className={`status-message-button ${statusMessage.includes('Correcto') ? 'status-message-button-success' : ''}`}
+        >
+          {statusMessage}
+        </button>
+      )}
       <Map>
         {municipalities.length > 0 && targetMunicipality && (
           <MunicipalityLayer
@@ -64,6 +102,7 @@ export default function OndeEstaPage() {
             onMunicipalityClick={handleMunicipalityClick}
             showTooltips={false}
             incorrectGuesses={incorrectGuesses}
+            revealedMunicipality={isTargetRevealed ? targetMunicipalityRef.current : null}
           />
         )}
       </Map>

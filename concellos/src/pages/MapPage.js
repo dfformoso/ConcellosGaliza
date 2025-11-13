@@ -4,12 +4,13 @@ import MunicipalityLayer from '../components/MunicipalityLayer';
 import Title from '../components/Title';
 import VisitedList from '../components/VisitedList';
 import { useMunicipalities } from '../hooks/useMunicipalities';
+import '../styles/MapPage.css';
 
 export default function MapPage() {
   const { municipalities, visited, toggleMunicipality, removeMunicipality } = useMunicipalities();
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="map-page-container">
       <Title title="Os concellos que visitei" />
       <VisitedList visited={visited} onRemove={removeMunicipality} />
       <Map>
