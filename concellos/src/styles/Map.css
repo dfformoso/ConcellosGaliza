@@ -1,12 +1,14 @@
 .leaflet-container {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100dvh;
   width: 100%;
+  background: radial-gradient(circle at 30% 20%, #edf5ff, #dbe8f8 68%, #cadcee);
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
   .leaflet-container {
-    height: 100vh;
+    min-height: 100vh;
+    height: 100dvh;
   }
 }
-

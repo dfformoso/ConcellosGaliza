@@ -10,7 +10,7 @@ export default function Title({ title }) {
         onClick={() => navigate('/')}
         className="title-button"
       >
-        <span className="title-button-arrow">←</span>
+        <span className="title-button-arrow" aria-hidden="true">←</span>
         <span>Volver</span>
       </button>
       <h1 className="title-h1">

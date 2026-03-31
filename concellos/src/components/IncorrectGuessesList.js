@@ -8,7 +8,10 @@ export default function IncorrectGuessesList({ guesses }) {
 
   return (
     <div className="incorrect-guesses-container">
-      <h2 className="incorrect-guesses-title">Intentos errados</h2>
+      <div className="incorrect-guesses-header">
+        <h2 className="incorrect-guesses-title">Intentos errados</h2>
+        <span className="incorrect-guesses-count">{guesses.length}</span>
+      </div>
       <ul className="incorrect-guesses-list">
         {guesses.map((name) => (
           <li key={name} className="incorrect-guesses-item">

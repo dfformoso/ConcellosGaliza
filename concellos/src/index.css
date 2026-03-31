@@ -1,10 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap');
+
+:root {
+  --bg-deep: #071426;
+  --bg-mid: #10233f;
+  --bg-soft: #17345d;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: #ffffff;
+  --text-primary: #0f1f32;
+  --text-secondary: #304866;
+  --accent: #0da5b5;
+  --accent-strong: #0a7e8a;
+  --success: #198754;
+  --warning: #d9480f;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --shadow-soft: 0 12px 40px rgba(7, 20, 38, 0.2);
+  --shadow-panel: 0 18px 34px rgba(6, 22, 45, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  color: var(--text-primary);
+  background: linear-gradient(120deg, var(--bg-deep), var(--bg-mid) 55%, var(--bg-soft));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Sora', 'Manrope', sans-serif;
 }
 
 code {

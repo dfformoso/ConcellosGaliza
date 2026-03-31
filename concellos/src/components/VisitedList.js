@@ -4,7 +4,10 @@ import '../styles/VisitedList.css';
 export default function VisitedList({ visited, onRemove }) {
   return (
     <div className="visited-list-container">
-      <h2 className="visited-list-title">Concellos Visitados</h2>
+      <div className="visited-list-header">
+        <h2 className="visited-list-title">Concellos Visitados</h2>
+        <span className="visited-list-count">{visited.length}</span>
+      </div>
       {visited.length === 0 ? (
         <p className="visited-list-empty">Aínda non visitaches ningún concello</p>
       ) : (

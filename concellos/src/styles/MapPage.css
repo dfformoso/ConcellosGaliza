@@ -1,4 +1,45 @@
 .map-page-container {
   position: relative;
+  isolation: isolate;
 }
 
+.map-page-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 400;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(10, 27, 51, 0.16), transparent 18%, transparent 78%, rgba(10, 27, 51, 0.2));
+}
+
+.map-feedback {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1200;
+  margin: 0;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+
+.map-feedback-error {
+  color: #a01824;
+  border-color: rgba(160, 24, 36, 0.3);
+  background: rgba(255, 240, 241, 0.95);
+}
+
+@media (max-width: 768px) {
+  .map-feedback {
+    top: 52px;
+    max-width: calc(100% - 20px);
+    border-radius: var(--radius-md);
+  }
+}

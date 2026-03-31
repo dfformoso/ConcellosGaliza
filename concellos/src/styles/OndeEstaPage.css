@@ -1,50 +1,94 @@
 .onde-esta-page-container {
   position: relative;
+  isolation: isolate;
+}
+
+.onde-esta-page-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 400;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(10, 27, 51, 0.16), transparent 20%, transparent 78%, rgba(10, 27, 51, 0.2));
+}
+
+.map-feedback {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1200;
+  margin: 0;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+
+.map-feedback-error {
+  color: #a01824;
+  border-color: rgba(160, 24, 36, 0.3);
+  background: rgba(255, 240, 241, 0.95);
 }
 
 .status-message-button {
   position: absolute;
-  top: 80px;
+  top: 78px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #007bff;
-  color: white;
-  padding: 16px 32px;
-  border-radius: 12px;
-  border: 2px solid #0056b3;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1100;
-  font-weight: bold;
-  font-size: 18px;
+  background: linear-gradient(145deg, #0da5b5, #0c8592);
+  color: #f7feff;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow: var(--shadow-soft);
+  z-index: 1150;
+  font-weight: 800;
+  font-size: 0.92rem;
   text-align: center;
-  max-width: 90%;
+  max-width: calc(100% - 24px);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   font-family: inherit;
-  outline: none;
-  user-select: none;
 }
 
 .status-message-button:hover {
-  background-color: #0056b3;
-  border-color: #004085;
-  transform: translateX(-50%) scale(1.08);
-  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%) translateY(-1px);
+  box-shadow: 0 20px 34px rgba(11, 106, 117, 0.38);
 }
 
 .status-message-button:active {
-  transform: translateX(-50%) scale(1.02);
+  transform: translateX(-50%);
+}
+
+.status-message-button:focus-visible {
+  outline: 3px solid rgba(12, 133, 146, 0.6);
+  outline-offset: 2px;
 }
 
 .status-message-button-success {
-  background-color: #28a745;
-  border-color: #1e7e34;
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(145deg, #198754, #157347);
 }
 
 .status-message-button-success:hover {
-  background-color: #218838;
-  border-color: #1c7430;
-  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.5), 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 34px rgba(22, 115, 71, 0.38);
 }
 
+@media (max-width: 768px) {
+  .map-feedback {
+    top: 52px;
+    max-width: calc(100% - 20px);
+    border-radius: var(--radius-md);
+  }
+
+  .status-message-button {
+    top: 86px;
+    font-size: 0.82rem;
+    padding: 10px 14px;
+  }
+}

@@ -2,7 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/GameBox.css';
 
-export default function GameBox({ title, description, path, disabled = false }) {
+export default function GameBox({
+  title,
+  description,
+  path,
+  disabled = false,
+  tone = 'teal',
+  eyebrow = ''
+}) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -12,10 +19,14 @@ export default function GameBox({ title, description, path, disabled = false }) 
   };
 
   return (
-    <div
+    <button
+      type="button"
       onClick={handleClick}
-      className={`game-box ${disabled ? 'disabled' : ''}`}
+      className={`game-box game-box-${tone} ${disabled ? 'disabled' : ''}`}
+      disabled={disabled}
+      aria-disabled={disabled ? 'true' : undefined}
     >
+      {eyebrow && <span className="game-box-eyebrow">{eyebrow}</span>}
       <h2 className="game-box-title">{title}</h2>
       <p className="game-box-description">{description}</p>
       {disabled && (
@@ -23,6 +34,6 @@ export default function GameBox({ title, description, path, disabled = false }) 
           Próximamente
         </p>
       )}
-    </div>
+    </button>
   );
 } 

@@ -8,7 +8,8 @@ export default function GameObjective({ objectiveText }) {
 
   return (
     <div className="objective-container">
-      <h2 className="objective-text">Busca: {objectiveText}</h2>
+      <p className="objective-label">Concello obxectivo</p>
+      <h2 className="objective-text">{objectiveText}</h2>
     </div>
   );
-} 
+}

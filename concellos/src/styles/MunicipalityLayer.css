@@ -1,13 +1,16 @@
 .municipality-tooltip {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px 10px;
-  font-size: 14px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  padding: 6px 11px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  box-shadow: 0 8px 24px rgba(7, 20, 38, 0.22);
   pointer-events: none;
+  backdrop-filter: blur(8px);
 }
 
 .municipality-tooltip::before {
-  border-top-color: white;
-} 
+  border-top-color: rgba(255, 255, 255, 0.94);
+}

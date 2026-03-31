@@ -17,29 +17,29 @@ export default function MunicipalityLayer({
 
     if (revealedMunicipality && name === revealedMunicipality) {
       return {
-        fillColor: '#007bff',
-        color: '#004a99',
+        fillColor: '#0da5b5',
+        color: '#086874',
         weight: 2,
-        fillOpacity: 0.7,
+        fillOpacity: 0.82,
         interactive: false
       };
     }
 
     if (incorrectGuesses.includes(name)) {
       return {
-        fillColor: '#d9534f',
-        color: 'black',
-        weight: 1,
-        fillOpacity: 0.7,
+        fillColor: '#d93e3e',
+        color: '#8f1a1f',
+        weight: 1.2,
+        fillOpacity: 0.78,
         interactive: false
       };
     }
 
     return {
-      fillColor: visited.includes(name) ? 'blue' : 'white',
-      color: 'black',
+      fillColor: visited.includes(name) ? '#198754' : '#f5f9ff',
+      color: visited.includes(name) ? '#0f5736' : '#315172',
       weight: 1,
-      fillOpacity: 0.6,
+      fillOpacity: visited.includes(name) ? 0.74 : 0.68,
       interactive: true
     };
   }, [visited, incorrectGuesses, revealedMunicipality]);

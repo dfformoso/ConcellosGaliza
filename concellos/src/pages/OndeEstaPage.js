@@ -8,7 +8,7 @@ import IncorrectGuessesList from '../components/IncorrectGuessesList';
 import '../styles/OndeEstaPage.css';
 
 export default function OndeEstaPage() {
-  const { municipalities } = useMunicipalities();
+  const { municipalities, isLoading, error } = useMunicipalities();
   const [targetMunicipality, setTargetMunicipality] = useState(null);
   const [incorrectGuesses, setIncorrectGuesses] = useState([]);
   const [isTargetRevealed, setIsTargetRevealed] = useState(false);
@@ -85,6 +85,8 @@ export default function OndeEstaPage() {
   return (
     <div className="onde-esta-page-container">
       <Title title="Onde está o Concello?" />
+      {isLoading && <p className="map-feedback">Cargando concellos...</p>}
+      {error && <p className="map-feedback map-feedback-error">{error}</p>}
       <IncorrectGuessesList guesses={incorrectGuesses} />
       {statusMessage && (
         <button

@@ -7,11 +7,20 @@ import { useMunicipalities } from '../hooks/useMunicipalities';
 import '../styles/MapPage.css';
 
 export default function MapPage() {
-  const { municipalities, visited, toggleMunicipality, removeMunicipality } = useMunicipalities();
+  const {
+    municipalities,
+    visited,
+    toggleMunicipality,
+    removeMunicipality,
+    isLoading,
+    error
+  } = useMunicipalities();
 
   return (
     <div className="map-page-container">
       <Title title="Os concellos que visitei" />
+      {isLoading && <p className="map-feedback">Cargando concellos...</p>}
+      {error && <p className="map-feedback map-feedback-error">{error}</p>}
       <VisitedList visited={visited} onRemove={removeMunicipality} />
       <Map>
         {municipalities.length > 0 && (
